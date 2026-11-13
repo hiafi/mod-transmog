@@ -105,6 +105,29 @@ Transmogrification.EnablePortable = 1
 Transmogrification.EnableSortByQualityAndName = 1
 
 #
+#    WARDROBE UI
+#
+#    Transmogrification.WardrobeUI.Enable
+#        Description: Enables / Disables the server side of the client's wardrobe window (addon messages with the
+#                     "CTMOG" prefix). While disabled, those messages are still swallowed but get no answer, and the
+#                     window shows itself as unavailable. The transmogrifier NPC's gossip menu works either way.
+#        Default:    1
+#
+#    Transmogrification.WardrobeUI.SlotBound
+#        Description: If enabled, a transmogrified look belongs to the equipment slot instead of the item. Equipping
+#                     another item in the slot puts the look on it for free when that item can take it (and the look
+#                     is still in the account collection); otherwise the look waits until a compatible item is
+#                     equipped. An item that leaves the slot loses the slot's look. Applies to every route (wardrobe,
+#                     gossip, vendor interface, presets).
+#                     If disabled, looks stick to the item (stock behavior). Stored slot looks are kept either way.
+#                     The equip hooks write mod-transmog's shared look maps from map threads without a lock, so
+#                     this assumes MapUpdate.Threads = 1 (as stock mod-transmog does).
+#        Default:    1
+
+Transmogrification.WardrobeUI.Enable = 1
+Transmogrification.WardrobeUI.SlotBound = 1
+
+#
 #    COPPER COST
 #
 #    Transmogrification.ScaledCostModifier

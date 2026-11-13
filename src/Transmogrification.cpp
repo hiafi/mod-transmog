@@ -453,6 +453,7 @@ void Transmogrification::DeleteFakeEntry(Player* player, uint8 /*slot*/, Item* i
     //    return false;
     DeleteFakeFromDB(itemTransmogrified->GetGUID().GetCounter(), trans);
     UpdateItem(player, itemTransmogrified);
+    TransmogUI_OnFakeEntryChanged(player, itemTransmogrified, 0);
 }
 
 void Transmogrification::SetFakeEntry(Player* player, uint32 newEntry, uint8 /*slot*/, Item* itemTransmogrified)
@@ -462,6 +463,7 @@ void Transmogrification::SetFakeEntry(Player* player, uint32 newEntry, uint8 /*s
     dataMap[itemGUID] = player->GetGUID();
     CharacterDatabase.Execute("REPLACE INTO custom_transmogrification (GUID, FakeEntry, Owner) VALUES ({}, {}, {})", itemGUID.GetCounter(), newEntry, player->GetGUID().GetCounter());
     UpdateItem(player, itemTransmogrified);
+    TransmogUI_OnFakeEntryChanged(player, itemTransmogrified, newEntry);
 }
 
 bool Transmogrification::AddCollectedAppearance(uint32 accountId, uint32 itemId)
@@ -469,11 +471,14 @@ bool Transmogrification::AddCollectedAppearance(uint32 accountId, uint32 itemId)
     if (!collectionCache.contains(accountId))
     {
         collectionCache.insert({ accountId, {itemId} });
+        TransmogUI_OnAppearanceCollected(accountId, itemId);
         return true;
     }
 
     auto res = collectionCache[accountId].insert(itemId);
     bool inserted = res.second;
+    if (inserted)
+        TransmogUI_OnAppearanceCollected(accountId, itemId);
     return inserted;
 }
 
