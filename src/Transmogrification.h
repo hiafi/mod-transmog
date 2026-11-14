@@ -182,6 +182,12 @@ enum PlusFeatures
 
 const uint32 TMOG_VENDOR_CREATURE_ID = 190010;
 
+// Wardrobe UI (transmog_ui.cpp)
+void TransmogUI_OnAppearanceCollected(uint32 accountId, uint32 itemId);
+void TransmogUI_OnFakeEntryChanged(Player* player, Item* item, uint32 newEntry);
+void TransmogUI_ClearSlotChoices(Player* player);
+void TransmogUI_OnConfigReload();
+
 class Transmogrification
 {
 public:

@@ -268,6 +268,7 @@ public:
                         removed = true;
                     }
                 }
+                TransmogUI_ClearSlotChoices(player);
                 if (removed)
                 {
                     session->SendAreaTriggerMessage("{}", Tstr(session, LANG_TRANSMOG_UNTRANSMOG_OK));

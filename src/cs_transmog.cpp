@@ -807,6 +807,7 @@ public:
         handler->SendSysMessage("Transmog configs reloaded.");
         sTransmogrification->LoadCollections();
         handler->SendSysMessage("Transmog collections reloaded.");
+        TransmogUI_OnConfigReload();
         return true;
     }
 };
